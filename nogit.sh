@@ -9,7 +9,7 @@ fi
 
 for dir in $check_dirs; do
   if [ -d $dir ]; then
-    fd . $dir --full-path --maxdepth 2 --type d &>> ~/Dev/sh/nogit/tmp.txt
+    fd . $dir --full-path --maxdepth 1 --type d &>> ~/Dev/sh/nogit/tmp.txt
   fi
 done
 
