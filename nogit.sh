@@ -15,14 +15,16 @@ done
 
 all_proj=$(<~/Dev/sh/nogit/tmp.txt)
 
-rm -f ~/Dev/sh/nogit/tmp.txt
 
 for proj in $all_proj; do
   if [ ! -d ~/$proj/.git ]; then
     if fd --maxdepth 1 --full-path --type f . ~/$proj | grep "/" &> /dev/null; then
-      echo $proj
+      if ! cat ~/Dev/sh/nogit/ignore | grep $dir; then
+        echo $proj
+      fi
     fi
   fi
 done
 
+rm -f ~/Dev/sh/nogit/tmp.txt
 cd $prev
