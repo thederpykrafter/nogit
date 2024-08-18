@@ -1,32 +1,26 @@
 #!/bin/bash
+prev=$PWD
 
-check_dirs=".config Dev Documents"
-cd ~
-
-if [ ! -f ~/Dev/sh/nogit/tmp.txt ]; then
-  touch ~/Dev/sh/nogit/tmp.txt
-fi
-
-for dir in $check_dirs; do
-  if [[ $dir == "Dev" ]]; then
-    fd . $dir --full-path --maxdepth 2 --type d &>> ~/Dev/sh/nogit/tmp.txt
-  else
-    fd . $dir --full-path --maxdepth 1 --type d &>> ~/Dev/sh/nogit/tmp.txt
-  fi
-done
-
-all_proj=$(cat ~/Dev/sh/nogit/tmp.txt)
+function findDirs() {
+  cd ~
+  fd . $1 --full-path --maxdepth $2 --type d
+}
 
 
-for proj in $all_proj; do
-  if [ ! -d ~/$proj/.git ]; then # if has .git
-    if fd --maxdepth 1 --full-path --type f . ~/$proj | grep "/" &> /dev/null; then # if files in dir
-      if ! cat ~/Dev/sh/nogit/ignore | grep $proj &> /dev/null; then
-        echo $proj
+function nogit() {
+  for x in $(findDirs $1 $2); do
+    cd ~/$x
+
+      if ! cat ~/Dev/sh/nogit/ignore | grep $x &> /dev/null; then
+        [[ ! -d .git ]] && \
+        [[ $(fd --maxdepth 1 --type f) != "" ]] && echo $x # check for files
       fi
-    fi
-  fi
-done
 
-rm -f ~/Dev/sh/nogit/tmp.txt
+  done
+}
+
+nogit Dev 2
+nogit .config 1
+[[ -d ~/Documents ]] && nogit Documents 1
+
 cd $prev
