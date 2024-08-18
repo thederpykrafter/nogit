@@ -8,7 +8,9 @@ if [ ! -f ~/Dev/sh/nogit/tmp.txt ]; then
 fi
 
 for dir in $check_dirs; do
-  if [ -d $dir ]; then
+  if [[ $dir == "Dev" ]]; then
+    fd . $dir --full-path --maxdepth 2 --type d &>> ~/Dev/sh/nogit/tmp.txt
+  else
     fd . $dir --full-path --maxdepth 1 --type d &>> ~/Dev/sh/nogit/tmp.txt
   fi
 done
