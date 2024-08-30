@@ -17,9 +17,9 @@ function nogit() {
 # Usage:
 # nogit [dir] [depth]
 nogit Dev 2
-nogit Dev/assets 2
 nogit .config 1
 # check if ~/Documents exists for termux compatibility
+[[ -d ~/Dev/assets ]] && nogit Dev/assets 2
 [[ -d ~/Documents ]] && nogit Documents 1
 
 cd $prev
