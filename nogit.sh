@@ -4,12 +4,13 @@ prev=$PWD
 # NOTE: ignores dirs with no files
 function nogit() {
   cd ~
-  for x in $(fd . $1 --full-path --maxdepth $2 --type d); do
-    cd ~/$x
-      if ! cat ~/Dev/sh/nogit/ignore | grep $x &> /dev/null; then
+  echo -e "\x1b[94m"$1"\x1b[m"
+  for dir in $(fd . $1 --full-path --maxdepth $2 --type d); do
+    cd ~/$dir
+      if ! cat ~/Dev/sh/nogit/ignore | grep $dir &> /dev/null; then
         [[ ! -d .git ]] && \
         [[ $(fd --maxdepth 1 --type f) != "" ]] && \
-        echo $x # check for files
+        echo $dir # check for files
       fi
   done
 }
