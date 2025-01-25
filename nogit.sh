@@ -5,7 +5,7 @@ prev=$PWD
 function nogit() {
   cd ~
   echo -e "\x1b[94m"$1"\x1b[m"
-  for dir in $(fd . $1 --full-path --maxdepth $2 --type d); do
+  IFS=$'\n'; for dir in $(fd . $1 --full-path --maxdepth $2 --type d); do
     cd ~/$dir
     if ! cat ~/Dev/sh/nogit/ignore | grep $dir &> /dev/null; then
       [[ ! -d .git ]] && \
