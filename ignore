@@ -1,4 +1,3 @@
-~/.config/NuGet/
 ~/.config/autostart/
 ~/.config/dconf/
 ~/.config/dunst/
@@ -7,6 +6,7 @@
 ~/.config/gtk-4.0/
 ~/.config/htop/
 ~/.config/nano/
+~/.config/NuGet/
 ~/.config/nwg-look/
 ~/.config/pulse/
 ~/.config/rclone/

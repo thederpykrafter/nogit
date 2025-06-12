@@ -45,6 +45,7 @@ function should_ignore() {
     SRC_DIR=`dirname "$0"`
     [[ $SRC_DIR == "." ]] && SRC_DIR=$(pwd)
     main_nogit | fzf | tee $SRC_DIR/ignore > /dev/null
+    sort -o $SRC_DIR/ignore $SRC_DIR/ignore
   fi
   echo
 }
