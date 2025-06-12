@@ -1,1 +1,15 @@
+~/.config/NuGet/
+~/.config/autostart/
+~/.config/dconf/
+~/.config/dunst/
 ~/.config/gh/
+~/.config/gtk-3.0/
+~/.config/gtk-4.0/
+~/.config/htop/
+~/.config/nano/
+~/.config/nwg-look/
+~/.config/pulse/
+~/.config/rclone/
+~/.config/rofi/
+~/.config/xed/
+~/.config/xsettingsd/
