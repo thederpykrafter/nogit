@@ -21,7 +21,7 @@ function nogit() {
   for dir in $(fd . $1 --full-path --maxdepth $2 --type d); do
     cd ~/$dir
     # ignore paths in $BASH_SOURCE/ignore
-    if ! cat ~/Dev/sh/nogit/ignore | grep $dir &> /dev/null; then
+    if ! cat ~/Dev/bash/nogit/ignore | grep $dir &> /dev/null; then
       # check for files
       [[ ! -d .git ]] && [[ $(fd --maxdepth 1 --type f) != "" ]] \
         && echo "~/$dir"
